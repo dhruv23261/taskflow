@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════
+   TaskFlow — Design System
+   ═══════════════════════════════════════════════════ */
+
+:root {
+  --clr-primary-50:  #f5f3ff;
+  --clr-primary-100: #ede9fe;
+  --clr-primary-400: #a78bfa;
+  --clr-primary-500: #8b5cf6;
+  --clr-primary-600: #7c3aed;
+  --clr-accent:      #06b6d4;
+  --clr-success:     #10b981;
+  --clr-warning:     #f59e0b;
+  --clr-danger:      #ef4444;
+
+  --bg-app:      #ffffff;
+  --bg-surface:  #ffffff;
+  --border-color: #e2e8f0;
+
+  --radius-lg:  20px;
+  --radius-xl:  32px;
+  
+  --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+  --shadow-hover:   0 35px 60px -15px rgba(0, 0, 0, 0.1);
+}
+
+/* ─────────────────────────────────────────────────
+   BASE & RESET
+   ───────────────────────────────────────────────── */
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #0f172a;
+  background-color: var(--bg-app);
+  overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────────────
+   ANIMATIONS
+   ───────────────────────────────────────────────── */
+@keyframes blob {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  33%  { transform: translate(30px, -50px) scale(1.1); }
+  66%  { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 { animation-delay: 2s; }
+.animation-delay-4000 { animation-delay: 4s; }
+
+/* ─────────────────────────────────────────────────
+   COMPONENTS
+   ───────────────────────────────────────────────── */
+
+/* Interactive Card */
+.card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-premium);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--clr-primary-200);
+}
+
+/* Premium Button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.25);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Glass Inputs */
+.form-input, .form-select, .form-textarea {
+  background: rgba(248, 250, 252, 0.8);
+  border: 2px solid #f1f5f9;
+  border-radius: 14px;
+  padding: 0.875rem 1.25rem;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.form-input:focus {
+  background: white;
+  border-color: var(--clr-primary-400);
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+  outline: none;
+}
+
+/* Badge System */
+.badge {
+  padding: 0.4rem 0.875rem;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+}
+
+.badge-high { 
+  background: #fee2e2; 
+  color: #ef4444;
+  border-color: #fca5a5;
+}
+.badge-medium { 
+  background: #fef3c7; 
+  color: #d97706;
+  border-color: #fcd34d;
+}
+.badge-low { 
+  background: #dcfce7; 
+  color: #10b981;
+  border-color: #86efac;
+}
+
+/* Avatars */
+.avatar {
+  background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+  color: white;
+  font-weight: 900;
+  border-radius: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(12px);
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+
+.modal {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.15);
+}
+
+/* Kanban Columns */
+.column-bg {
+  background: rgba(241, 245, 249, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  border-radius: 24px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 20px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+  background-clip: content-box;
+}

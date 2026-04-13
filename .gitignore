@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+.npm
+dist/
+dist-ssr
+*.local
+
+# Environment
+.env
+.env.test
+.env.production
+.env.example
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+.docker_data/
+postgres_data/
+
+# Backend specific
+backend/.env
+
+# Frontend specific
+frontend/.env
+frontend/.env.local
+frontend/dist/
