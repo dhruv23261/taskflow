@@ -23,50 +23,33 @@ TaskFlow is a full-stack application built with a Node.js/Express backend and a 
 
 ## Running Locally
 
-### Prerequisites
-- Node.js (v18+)
-- PostgreSQL (running locally)
+### Full stack with Docker
+A single `docker compose up --build` starts PostgreSQL, the API server, and the React frontend.
 
-### Step 1: Project Setup
+1. Copy `.env.example` to `.env` if you want to override defaults:
 ```bash
-# Clone the repository
-git clone https://github.com/your-name/taskflow
-cd taskflow
-
-# Install all dependencies
-cd backend && npm install
-cd ../frontend && npm install
+copy .env.example .env
 ```
 
-### Step 2: Environment Configuration
-Create a `.env` file in the `backend/` directory:
-```env
-PORT=3000
-DATABASE_URL=postgres://user:password@localhost:5432/taskflow_db
-JWT_SECRET=your-super-secret-key-change-this
-```
-
-### Step 3: Database Migrations
-Create the database `taskflow_db` in your PostgreSQL instance, then run:
+2. Start the stack:
 ```bash
-cd backend
-npm run migrate:up
-npm run seed
+docker compose up --build
 ```
 
-### Step 4: Start the Engines
-**Backend:**
-```bash
-cd backend
-npm run dev
+3. Open the frontend:
+```text
+http://localhost:3000
 ```
 
-**Frontend:**
-```bash
-cd frontend
-npm run dev
+The backend API will be available at:
+```text
+http://localhost:5000/api/v1
 ```
-The app will be available at http://localhost:5173.
+
+> The compose stack automatically creates the database, runs migrations, and seeds demo data on first startup.
+
+### Optional manual startup
+If you prefer to run locally without Docker, keep the existing backend and frontend workflow.
 
 ## 4. Test Credentials
 Use the following account to explore the pre-seeded data:

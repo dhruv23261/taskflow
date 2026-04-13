@@ -3,27 +3,25 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Install production dependencies only
 COPY package*.json ./
-RUN npm install
+RUN npm install --omit=dev
 
-# Copy source code
+# Copy source files for runtime
 COPY . .
 
-# Stage 2: Runtime
+# Stage 2: Minimal runtime image
 FROM node:18-alpine
 
 WORKDIR /app
 
-# Copy only necessary files from builder
+# Copy only runtime artifacts
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/src ./src
 COPY --from=builder /app/migrations ./migrations
 COPY --from=builder /app/package.json ./package.json
 
-# Expose port
 EXPOSE 5000
 
-# Start command (migrations + server)
-# In production, we using a shell script to handle migrations and startup
-CMD ["sh", "-c", "npm run migrate:up && npm start"]
+# Run database migrations, seed demo data, then start the server
+CMD ["sh", "-c", "npm run migrate:up && npm run seed && npm start"]
